@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .navbar {
+            background-color: #000;
+        }
+
+        .nav-link {
+            color: #fff !important;
+        }
+
+        .nav-link:hover {
+            color: #ffc107 !important;
+        }
+
+        .nav-item.active .nav-link {
+            color: #ffc107 !important;
+        }
+
+        .nav-item.active:hover .nav-link {
+            color: #fff !important;
+        }
+
+        input::placeholder {
+            color: #ccc;
+        }
+
+        .form-group input:focus {
+            outline: 0px !important;
+            box-shadow: none !important;
+            border-color: #495057;
+        }
+
+        input:focus::placeholder {
+            color: transparent;
+        }
+
+        input:-webkit-autofill,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:active {
+            transition: background-color 5000s ease-in-out 0s;
+            background-color: white !important;
+            border-color: #ced4da !important;
+            -webkit-text-fill-color: #495057 !important;
+            box-shadow: none !important;
+        }
+
+        input:focus {
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">BusPMS</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.php">Home</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="login.html">User Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="register.html">Register</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h2>Registration</h2>
+        <form id="registrationForm" action="register.php" method="POST">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select class="form-control" id="gender" name="gender" required>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" class="form-control" id="dob" name="dob" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="contact_no">Contact Number:</label>
+                <input type="text" class="form-control" id="contact_no" name="contact_no" required>
+            </div>
+            <button type="submit" class="btn" style="background-color: #ffc107;">Register</button>
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Home</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            background-image: url('auth-bg.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            color: #fff;
+        }
+
+        .navbar {
+            background-color: #000;
+        }
+
+        .nav-link {
+            color: #fff !important;
+        }
+
+        .nav-link:hover {
+            color: #ffc107 !important;
+        }
+
+        .nav-item.active .nav-link {
+            color: #ffc107 !important;
+        }
+
+        .nav-item.active:hover .nav-link {
+            color: #fff !important;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .heading {
+            color: #ffc107;
+            text-align: center;
+            text-transform: uppercase;
+            text-shadow: 2px 1px 4px #000;
+            font-weight: bold;
+            letter-spacing: 2px;
+            font-size: 50px;
+        }
+
+        .form-group label {
+            color: #ffc107;
+            font-size: larger;
+            font-weight: bold;
+        }
+
+        .form-group {
+            display: grid;
+            width: 100%;
+            margin: 10px;
+        }
+
+        .form-control-div {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .form-control {
+            outline: none;
+        }
+
+        span {
+            height: 100px;
+            width: 5px;
+            background: #fff;
+        }
+
+        button[type="submit"] {
+            background-color: #ffc107;
+            color: #000;
+            border: none;
+            font-size: larger;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #000;
+            color: #ffc107;
+            font-size: larger;
+            font-weight: bold;
+        }
+
+        /* Style for the form */
+        #busBookingForm {
+            background-color: #000;
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        .form-control-btn {
+            display: grid;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">BusPMS</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="home.php">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="bus_tickets.php">Bus Tickets</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="bus_schedule.php">Bus Schedule</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="user_bookings.php">User Bookings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="user_profile.php">User Profile</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="logout.php">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row mt-5">
+            <div class="col-md-10 offset-md-1 mt-5">
+                <h2 class="heading">Book Bus Ticket</h2>
+                <form id="busBookingForm" action="<?php echo htmlspecialchars($_SERVER[" PHP_SELF"]); ?>
+                    <!-- " method="POST"
+                    class="row"> -->
+                    <div class="form-control-div">
+                        <div class="form-group ">
+                            <label for="sourceCity"><img width="35" height="35"
+                                    src="https://img.icons8.com/ios/50/FAB005/bus.png" alt="bus" /> From:</label>
+                            <select class="form-control" id="sourceCity" name="sourceCity" required>
+                                <?php
+                            include('config.php');
+                            $sql = "SELECT * FROM cities";
+                            $result = mysqli_query($conn, $sql);
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo "<option value='" . $row['city_name'] . "'>" . $row['city_name'] . "</option>";
+                            }
+                            ?>
+                            </select>
+                        </div>
+                        <span></span>
+                        <div class="form-group ">
+                            <label for="destinationCity"><img width="35" height="35"
+                                    src="https://img.icons8.com/ios/50/FAB005/bus.png" alt="bus" /> To:</label>
+                            <select class="form-control" id="destinationCity" name="destinationCity" required>
+                                <?php
+                            mysqli_data_seek($result, 0); // Reset result pointer to start
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo "<option value='" . $row['city_name'] . "'>" . $row['city_name'] . "</option>";
+                            }
+                            ?>
+                            </select>
+                        </div>
+                        <span></span>
+                        <div class="form-group col-md-4">
+                            <label for="destinationCity"><img width="35" height="35"
+                                    src="https://img.icons8.com/external-yogi-aprelliyanto-basic-outline-yogi-aprelliyanto/64/FAB005/external-calender-time-and-date-yogi-aprelliyanto-basic-outline-yogi-aprelliyanto.png"
+                                    alt="external-calender-time-and-date-yogi-aprelliyanto-basic-outline-yogi-aprelliyanto" />
+                                Date:</label>
+                            <input class="form-control" type="date">
+                        </div>
+                    </div>
+                    <div class="form-control-btn">
+                        <div class="form-group ">
+                            <button type="submit" class="btn btn-warning btn-block p-3 mt-1">Search Buses</button>
+                        </div>
+                        <div class="form-group ">
+                            <button type="submit" class="btn btn-warning btn-block p-3 mt-1">Take a Pass</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="busModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Bus Booking</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="color: #000;">
+                    <h4>Shatabdi Travels</h4>
+                    <p>Available Seats: <span id="availableSeats">30</span></p>
+                    <p>Timings: <span id="busTimings">10:00 AM - 12:00 PM</span></p>
+                    <p>Total Seats: <span id="totalSeats">50</span></p>
+                    <div id="seatSelection">
+                        <button type="button" class="btn" style="background-color: #ffc107; color:#000">Book
+                            Seat</button>
+                    </div>
+                </div>
+                <div class="modal-body" style="color: #000;">
+                    <h4>Maharashtra Travels</h4>
+                    <p>Available Seats: <span id="availableSeats">25</span></p>
+                    <p>Departure: <span id="busDeparture">16:00 - 22:30</span></p>
+                    <p>Duration: <span id="busDuration">06h 30m</span></p>
+                    <p>: <span id="busDeparture">22:30</span></p>
+                    <p>Total Seats: <span id="totalSeats">45</span></p>
+                    <div id="seatSelection">
+                        <button type="button" class="btn" style="background-color: #ffc107; color:#000">Book
+                            Seat</button>
+                    </div>
+                </div>
+                <div class="modal-body" style="color: #000;">
+                    <h4>Humsafar Travels</h4>
+                    <p>Available Seats: <span id="availableSeats">30</span></p>
+                    <p>Timings: <span id="busTimings">10:00 AM - 12:00 PM</span></p>
+                    <p>Total Seats: <span id="totalSeats">50</span></p>
+                    <div id="seatSelection">
+                        <button type="button" class="btn" style="background-color: #ffc107; color:#000">Book
+                            Seat</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" style="background-color: #000; color:#ffc107"
+                        data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

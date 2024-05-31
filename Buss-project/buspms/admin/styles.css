@@ -1,0 +1,103 @@
+body {
+    background-color: #fff;
+    color: #000;
+}
+
+.container {
+    padding: 20px;
+}
+
+.btn {
+    background-color: #000;
+    color: #ffc107;
+}
+
+.btn:hover {
+    background-color: #000;
+    color: #ffc107;
+}
+
+.table th, .table td {
+    color: #000;
+}
+
+.table thead th {
+    background-color: #fff;
+    border-color: #000;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #FFFFC2;
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+    background-color: #fff;
+}
+
+.table-bordered {
+    border-color: #000;
+}
+
+.table-bordered th, .table-bordered td {
+    border-color: #000;
+}
+.form-control {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid;
+}
+
+.form-control:focus {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid;
+    box-shadow: none;
+}
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 250px;
+    background-color: #343a40;
+    color: #fff;
+    padding-top: 60px;
+}
+
+.sidebar ul {
+    padding-left: 0;
+}
+
+.sidebar ul li {
+    list-style: none;
+}
+
+.sidebar ul li a {
+    display: block;
+    padding: 10px 15px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.page-content {
+    margin-left: 250px;
+}
+
+.header {
+    background-color: #f8f9fa;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer {
+    background-color: #343a40;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.card {
+    margin-bottom: 20px;
+}
